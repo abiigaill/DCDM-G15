@@ -322,7 +322,6 @@ QC_results <- data.frame(
 
 QC_results$status[QC_results$file %in% flagged_files] <- "FLAGGED"
 
-
 clean_DF <- map_dfr(clean_files, ~ read_csv(.x, col_names=c("field", "value"), col_types="cc") %>%
                       mutate(file=basename(.x)))
 clean_DF <- clean_DF %>% 
@@ -347,7 +346,7 @@ disease_info <- read.table("Disease_information.txt", sep="\t", header=F, fill=T
 colnames(disease_info) <- c("Human Gene Symbol", "Human Gene Name", "HGNC ID for human gene", "DO term name associated with human gene", "DO term ID associated with human gene", "Mouse genotype IDs associated with DO term", "Mouse Gene", "MGI Mouse Gene ID")
 
 
-IMPC_parameter <- read.table("IMPC_parameter_description.txt", sep= ",", header=T, fill=T)
+IMPC_parameter <- read.table("IMPC_parameter_description.txt", sep= ",", header=T, fill=T, quote="")
 IMPC_procedure <- read.table("IMPC_procedure.txt", sep=",", header=T, fill=T)
 
 library(tidyr)
